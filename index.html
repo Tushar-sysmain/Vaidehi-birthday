@@ -98,6 +98,38 @@
     <img src="./image/milk bear.png">
   </div>
 
+
+
+<canvas id="particles"></canvas>
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let hearts = Array.from({length: 30}, () => ({
+  x: Math.random()*canvas.width,
+  y: Math.random()*canvas.height,
+  size: Math.random()*20 + 10,
+  speed: Math.random()*1 + 0.5
+}));
+
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  hearts.forEach(h => {
+    ctx.font = `${h.size}px serif`;
+    ctx.fillText("💖", h.x, h.y);
+    h.y -= h.speed;
+    if(h.y < -20) h.y = canvas.height + 20;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+
+
+  
 </body>
 </html>
+
 
